@@ -1,0 +1,121 @@
+/* src/index.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fafafa; /* Light and cozy background */
+  color: #333; /* High contrast for readability */
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.topic-list {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff; /* Clean white for containers */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.topic-button {
+  background-color: #4caf50; /* Soothing green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+
+.topic-button:hover {
+  background-color: #388e3c;
+}
+
+.questions-container {
+  margin-top: 20px;
+  background-color: #e8f5e9; /* Light green background for questions */
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.question-card {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.question-text {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-button {
+  background-color: #f5f5f5; /* Light gray for options */
+  color: #555;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border: 2px solid #eee; /* Slight border for definition */
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.3s;
+}
+
+.option-button:hover {
+  border-color: #ccc;
+}
+
+.option-button.selected {
+  background-color: #78909c; /* Cozy blue for selected options */
+  color: white;
+  border-color: #78909c;
+}
+
+.option-button.correct {
+  background-color: #4ba34e; /* Green for correct answers */
+  color: white;
+  border-color: #4ba34e;
+}
+
+.option-button.incorrect {
+  background-color: #f2655b; /* Red for incorrect answers */
+  color: white;
+  border-color: #f2655b;
+}
+
+.score-display {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #388e3c; /* Green for the score */
+}
+
+.content {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.topics-list {
+  flex: 1;
+  padding: 20px;
+  max-width: 200px;
+  background-color: #f5f5f5; /* Light background for topics list */
+}
+
+.questions-container {
+  flex: 3;
+  padding: 20px;
+  background-color: #fff; /* White background for questions */
+  border-left: 2px solid #ddd; /* Separator */
+}
