@@ -1,11 +1,145 @@
-/* src/index.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #fafafa; /* Light and cozy background */
-  color: #333; /* High contrast for readability */
+  background-color: #ffffff; /* Clean white background */
+  color: #333; /* Darker text for better contrast */
   line-height: 1.6;
-  padding: 20px;
 }
+
+/* Header adjustments for a cleaner look */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px; /* Add more padding for a spacious feel */
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+
+/* App.css */
+.logout-button {
+  position: fixed;
+  top: 27px;
+  right: 200px;
+  padding: 5px 10px;
+  background-color: #dc635a; /* Example red background */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+
+
+/* Logo adjustments */
+.logo {
+  height: auto;
+  max-height: 60px; /* Make logo larger and more prominent */
+}
+
+/* Search bar adjustments for minimalism */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px 15px;
+  border-radius: 20px; /* Rounded edges for the search input */
+  border: 1px solid #ccc; /* Lighter border color */
+  outline: none;
+  width: 160px; /* Fixed width for search bar */
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  color: #888;
+}
+
+/* Adjust the subjects grid layout to match Savoy's clean spacing */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Responsive grid layout */
+  gap: 20px; /* More space between items */
+  padding: 40px; /* More outer spacing */
+  justify-content: center; /* Center grid items if they don't fill the width */
+}
+
+/* Card-like design for subject items */
+.subject-item {
+  cursor: pointer;
+  text-align: center;
+  background-color: #ffffff; /* White background for cards */
+  border-radius: 10px; /* Rounded corners for cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: hidden; /* Ensure content fits within the rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.subject-item:hover {
+  transform: translateY(-5px); /* Slight raise effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Darker shadow on hover for emphasis */
+}
+
+/* Subject image adjustments for a consistent look */
+.subject-image {
+  width: 100%; /* Responsive width */
+  height: 82%; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the area without distorting aspect ratio */
+}
+
+/* Subject name typographic adjustments for clarity */
+.subject-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 8px;
+  padding: 0 8px; /* Padding to prevent text from touching the edges */
+}
+
+
+/* Sidebar styles */
+.category-sidebar {
+  position: fixed;   /* Fixed position */
+  left: 0;           /* Align to the left */
+  top: 20;            /* Align to the top */
+  width: 100px;      /* Sidebar width */
+  height: 100vh;     /* Full height of the viewport */
+  background-color: #595959; /* Background color */
+  overflow-y: auto;  /* Enable vertical scrolling if necessary */
+  padding: 5px;     /* Padding inside the sidebar */
+}
+
+/* Button styles within the sidebar */
+.category-sidebar button {
+  width: 100%;       /* Full width of the sidebar */
+  padding: 10px;     /* Padding inside the buttons */
+  margin-bottom: 10px; /* Space between buttons */
+  border: none;      /* Remove border */
+  background-color: #ffffff; /* Background color of buttons */
+  cursor: pointer;   /* Cursor style when hovering over the buttons */
+  text-align: left;  /* Align text to the left */
+}
+
+.category-sidebar button:hover {
+  background-color: #c8c5c5; /* Background color on hover */
+}
+
+.main-full {
+  flex-grow: 1; /* Take full space when categories are not shown */
+  margin-left: 100px;/* No margin */
+}
+
+
 
 .topic-list {
   max-width: 700px;
@@ -100,18 +234,46 @@ body {
   color: #388e3c; /* Green for the score */
 }
 
+Copy code
+.explanation-text {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light grey background */
+    border-left: 4px solid #007bff; /* Blue left border */
+    font-style: italic;
+    color: #333;
+    text-align: left;
+}
+
+
 .content {
   display: flex;
   max-width: 1200px;
   margin: auto;
 }
 
-.topics-list {
-  flex: 1;
-  padding: 20px;
+.chapters-list {
   max-width: 200px;
-  background-color: #f5f5f5; /* Light background for topics list */
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+.chapter-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+
 
 .questions-container {
   flex: 3;
@@ -119,3 +281,104 @@ body {
   background-color: #fff; /* White background for questions */
   border-left: 2px solid #ddd; /* Separator */
 }
+
+.question-count-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.question-count-container button {
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #008CBA; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.question-count-container button:hover {
+  background-color: #007bb8; /* Darker blue */
+}
+
+/* General container and spacing styles */
+.content {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+
+/* revison cards */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  max-width: 800px; /* Width of the card */
+  height: 600px; /* Fixed height */
+  overflow: auto; /* Add scroll for overflow content */
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 10px; /* Adjust as needed */
+  color: #333;
+  flex-shrink: 0; /* Prevents the title from shrinking */
+}
+
+.card p {
+  color: #666;
+  flex-grow: 1; /* Allows the content area to grow */
+  overflow: auto; /* Scroll for overflow text */
+}
+
+.card-button {
+  display: block; /* Makes the button a block element */
+  width: 10%; /* Full width of the card */
+  padding: 10px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin: 20px auto;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+}
+
+/*------------------------*/
+
+/* revison Button */
+
+
+/* New styles for revision-button */
+.revision-button {
+  position: fixed;
+  top: 25px;
+  right: 310px; /* Adjust this value based on the actual width of the buttons */
+  padding: 3px 5px;
+  background-color: #4386cd; /* Different color for revision button */
+  color: white;
+  border: none;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline from Link */
+}
+
+.revision-button:hover {
+  background-color: #0056b3;
+}
+
+
+/*------------------------*/

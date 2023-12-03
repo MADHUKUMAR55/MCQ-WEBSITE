@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; // Add Link to the import
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import AnalysisPage from './components/AnalysisPage';
 import Chapters from './components/Chapters';
-import RevisionCards from './components/RevisionCards';
+
 
 const SubjectList = ({ subjects }) => (
     <div className="subjects-grid">
@@ -19,6 +19,7 @@ const SubjectList = ({ subjects }) => (
         ))}
     </div>
 );
+
 
 const App = () => {
     const [subjects, setSubjects] = useState([]);
@@ -35,7 +36,7 @@ const App = () => {
         axios.get('http://127.0.0.1:5000/subjects')
             .then(response => {
                 setSubjects(response.data);
-                setFilteredSubjects(response.data);
+                setFilteredSubjects(response.data); // Initialize filtered subjects
             })
             .catch(error => console.error('Error fetching subjects:', error));
 
@@ -55,12 +56,12 @@ const App = () => {
 
     const handleLogin = (email) => {
         setUserEmail(email);
-        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userEmail", email); // Store email in local storage
     };
 
     const handleLogout = () => {
-        setUserEmail("");
-        localStorage.removeItem("userEmail");
+        setUserEmail(""); // Clear email from state
+        localStorage.removeItem("userEmail"); // Clear email from local storage
     };
 
     const handleCategorySelect = (categoryId) => {
@@ -75,14 +76,9 @@ const App = () => {
         <Router>
             <Header onSearch={handleSearch} />
             {userEmail && (
-                <>
-                    <button onClick={handleLogout} className="logout-button">
-                        Logout
-                    </button>
-                    <Link to="/revision-cards" className="revision-button">
-                        Go to Revision Cards
-                    </Link>
-                </>
+                <button onClick={handleLogout} className="logout-button">
+                    Logout
+                </button>
             )}
             <div className="container">
                 {!userEmail ? (
@@ -108,14 +104,12 @@ const App = () => {
                         } />
                         <Route path="/subject/:subjectId" element={<Chapters userEmail={userEmail} />} />
                         <Route path="/analysis" element={<AnalysisPage userEmail={userEmail} />} />
-                        <Route path="/revision-cards" element={<RevisionCards />} />
+                        {/* Add other routes as needed */}
                     </Routes>
                 )}
             </div>
         </Router>
     );
-    
-    
 };
 
 export default App;
