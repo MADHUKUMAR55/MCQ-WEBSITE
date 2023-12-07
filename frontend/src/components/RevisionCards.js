@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import parse from 'html-react-parser';
 
 const RevisionCards = () => {
     const [cards, setCards] = useState([]);
@@ -36,10 +37,11 @@ const RevisionCards = () => {
         <div>
             <div className="card">
                 <h3>{cards[currentCardIndex].title}</h3>
-                <p>{cards[currentCardIndex].content}</p>
+                <div>{parse(cards[currentCardIndex].content)}</div>
             </div>
             <button className="card-button" onClick={handleNextClick}>Next</button>
         </div>
     );
 };
+
 export default RevisionCards;
