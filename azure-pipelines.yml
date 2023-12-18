@@ -12,7 +12,7 @@ pool:
 steps:
 - task: GoogleCloudSdkInstaller@0
   inputs:
-    version: '306.0.0'
+    version: '315.x'
 
 - task: DownloadSecureFile@1
   name: gcpKey
