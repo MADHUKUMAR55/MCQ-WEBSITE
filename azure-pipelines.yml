@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -10,7 +5,19 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- bash: |
+    if ! command -v gcloud &> /dev/null
+    then
+        echo "Google Cloud SDK not found, installing specific version..."
+        # The script to invoke GoogleCloudSdkTool task
+    else
+        echo "Google Cloud SDK already installed, checking version..."
+        gcloud --version
+    fi
+  displayName: 'Check and Install Google Cloud SDK'
+
 - task: GoogleCloudSdkTool@1
+  condition: and(succeeded(), eq(variables['GCloudSDKInstalled'], 'false'))
   inputs:
     versionSpec: '315.x'
 
@@ -18,5 +25,13 @@ steps:
   name: gcpKey
   inputs:
     secureFile: 'edtech-azure-pipepine-gcp-key.json'
-- bash: 'gcloud auth activate-service-account --key-file $(gcpKey.secureFilePath) && gcloud config set project secret-air-408514'
-- bash: 'gcloud compute instances list && gcloud compute ssh webserver --zone asia-south1-c --command "node -v"'
+
+- bash: |
+    gcloud auth activate-service-account --key-file $(gcpKey.secureFilePath)
+    gcloud config set project secret-air-408514
+  displayName: 'Authenticate to GCP and Set Project'
+
+- bash: |
+    gcloud compute instances list
+    gcloud compute ssh webserver --zone asia-south1-c -- -o BatchMode=yes -T --command "node -v"
+  displayName: 'List Instances and SSH into VM'
