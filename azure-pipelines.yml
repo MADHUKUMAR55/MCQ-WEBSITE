@@ -26,6 +26,12 @@ steps:
   inputs:
     secureFile: 'edtech-azure-pipepine-gcp-key.json'
 
+- task: DownloadSecureFile@1
+  name: sshKey
+  inputs:
+    secureFile: 'gcp-webserver-ssh-key'
+
+
 - bash: |
     gcloud auth activate-service-account --key-file $(gcpKey.secureFilePath)
     gcloud config set project secret-air-408514
@@ -33,5 +39,6 @@ steps:
 
 - bash: |
     gcloud compute instances list
-    gcloud compute ssh webserver --zone asia-south1-c -- -o BatchMode=yes -T --command "node -v"
+    chmod 600 $(sshKey.secureFilePath)
+    gcloud compute ssh webserver --zone asia-south1-c --command "node -v" --ssh-key-file=$(sshKey.secureFilePath)
   displayName: 'List Instances and SSH into VM'
