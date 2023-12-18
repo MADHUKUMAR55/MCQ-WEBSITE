@@ -10,6 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: DotNetCoreCLI@2
+- task: GoogleCloudSdkInstaller@0
   inputs:
-    command: 'build'
+    version: '306.0.0'
+
+- task: DownloadSecureFile@1
+  name: gcpKey
+  inputs:
+    secureFile: 'edtech-azure-pipepine-gcp-key.json'
+- bash: 'gcloud auth activate-service-account --key-file $(gcpKey.secureFilePath)'
+- bash: 'gcloud compute instances list'
