@@ -56,6 +56,17 @@ steps:
    gcloud compute scp --recurse $(Build.SourcesDirectory)/frontend edtechusingai@webserver:/home/edtechusingai/frontend --zone asia-south1-c  --verbosity=debug
   displayName: 'Copy frontend Folder to VM'
 
+- script: |
+    gcloud compute ssh edtechusingai@webserver --zone asia-south1-c --command "\
+      if ! tmux has-session -t frontend 2>/dev/null; then
+        tmux new-session -d -s frontend 'cd frontend && npm install && npm start';
+      else
+        tmux kill-session -t frontend;
+        tmux new-session -d -s frontend 'cd frontend && npm install && npm start';
+      fi \
+      "
+
+
 
 # - script: |
 #     gcloud compute ssh webserver --zone asia-south1-c --command "\
