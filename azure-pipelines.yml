@@ -27,7 +27,7 @@ steps:
     secureFile: 'edtech-azure-pipepine-gcp-key.json'
 
 - task: DownloadSecureFile@1
-  name: sshKey
+  name: sshPrivateKey
   inputs:
     secureFile: 'gcp-webserver-ssh-key-private'
 
