@@ -53,7 +53,7 @@ steps:
 
 - script: |
    ls -lh $(Build.SourcesDirectory)/frontend
-   gcloud compute scp --recurse $(Build.SourcesDirectory)/frontend webserver:~/frontend --zone asia-south1-c  --verbosity=debug
+   gcloud compute scp --recurse $(Build.SourcesDirectory)/frontend edtechusingai@webserver:/home/edtechusingai/frontend --zone asia-south1-c  --verbosity=debug
   displayName: 'Copy frontend Folder to VM'
 
 
