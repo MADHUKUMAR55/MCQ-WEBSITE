@@ -10,9 +10,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: GoogleCloudSdkInstaller@0
+- task: GoogleCloudSdkTool@1
   inputs:
-    version: '315.x'
+    versionSpec: '315.x'
 
 - task: DownloadSecureFile@1
   name: gcpKey
