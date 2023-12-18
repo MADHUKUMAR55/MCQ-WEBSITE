@@ -29,16 +29,24 @@ steps:
 - task: DownloadSecureFile@1
   name: sshKey
   inputs:
-    secureFile: 'gcp-webserver-ssh-key'
+    secureFile: 'gcp-webserver-ssh-key-private'
 
+- task: DownloadSecureFile@1
+  name: sshPublicKey
+  inputs:
+    secureFile: 'gcp-webserver-ssh-key-public.pub'
 
 - bash: |
     gcloud auth activate-service-account --key-file $(gcpKey.secureFilePath)
     gcloud config set project secret-air-408514
   displayName: 'Authenticate to GCP and Set Project'
 
-- bash: |
-    gcloud compute instances list
-    chmod 600 $(sshKey.secureFilePath)
-    gcloud compute ssh webserver --zone asia-south1-c --command "node -v" --ssh-key-file=$(sshKey.secureFilePath)
-  displayName: 'List Instances and SSH into VM'
+
+- script: |
+    chmod 600 $(sshPrivateKey.secureFilePath)
+    chmod 644 $(sshPublicKey.secureFilePath)
+    # Assuming the default location for gcloud SSH keys
+    cp $(sshPrivateKey.secureFilePath) $HOME/.ssh/google_compute_engine
+    cp $(sshPublicKey.secureFilePath) $HOME/.ssh/google_compute_engine.pub
+    gcloud compute ssh webserver --zone asia-south1-c --command "node -v"
+  displayName: 'SSH into VM and Execute Command'
