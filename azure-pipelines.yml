@@ -52,7 +52,8 @@ steps:
   displayName: 'Prepare SSH Keys'
 
 - script: |
-   gcloud compute scp --recurse $(Build.SourcesDirectory)/frontend/ webserver:~/frontend --zone asia-south1-c --compress --verbosity=debug
+   ls -lh $(Build.SourcesDirectory)/frontend
+   gcloud compute scp  $(Build.SourcesDirectory)/frontend webserver:~/frontend --zone asia-south1-c  --verbosity=debug
   displayName: 'Copy frontend Folder to VM'
 
 
