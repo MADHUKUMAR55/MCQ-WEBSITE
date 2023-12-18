@@ -19,4 +19,4 @@ steps:
   inputs:
     secureFile: 'edtech-azure-pipepine-gcp-key.json'
 - bash: 'gcloud auth activate-service-account --key-file $(gcpKey.secureFilePath) && gcloud config set project secret-air-408514'
-- bash: 'gcloud compute instances list'
+- bash: 'gcloud compute instances list && gcloud compute ssh webserver --zone asia-south1-c --command "node -v"'
