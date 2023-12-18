@@ -43,9 +43,10 @@ steps:
 
 
 - script: |
+    mkdir -p $HOME/.ssh
+    chmod 700 $HOME/.ssh
     chmod 600 $(sshPrivateKey.secureFilePath)
     chmod 644 $(sshPublicKey.secureFilePath)
-    # Assuming the default location for gcloud SSH keys
     cp $(sshPrivateKey.secureFilePath) $HOME/.ssh/google_compute_engine
     cp $(sshPublicKey.secureFilePath) $HOME/.ssh/google_compute_engine.pub
     gcloud compute ssh webserver --zone asia-south1-c --command "node -v"
