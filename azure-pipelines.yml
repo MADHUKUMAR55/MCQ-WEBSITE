@@ -5,6 +5,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: DownloadSecureFile@1
+  name: gcpKey
+  inputs:
+    secureFile: 'edtech-azure-pipepine-gcp-key.json'
+    
+- script: |
+    cat $(gcpKey.secureFilePath)
+  displayName: 'Read secure file'
+
 - bash: |
     if ! command -v gcloud &> /dev/null
     then
@@ -21,10 +30,7 @@ steps:
   inputs:
     versionSpec: '315.x'
 
-- task: DownloadSecureFile@1
-  name: gcpKey
-  inputs:
-    secureFile: 'edtech-azure-pipepine-gcp-key.json'
+
 
 - task: DownloadSecureFile@1
   name: sshPrivateKey
