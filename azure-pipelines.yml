@@ -8,7 +8,7 @@ steps:
 - task: DownloadSecureFile@1
   name: gcpKey
   inputs:
-    secureFile: 'edtech-azure-pipepine-gcp-key.json'
+    secureFile: 'kubeconfig.yaml'
     
 - script: |
     cat $(gcpKey.secureFilePath)
